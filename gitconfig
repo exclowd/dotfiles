@@ -1,0 +1,14 @@
+[user]
+    name = Kannav
+    email = kmkannavkmehta@gmail.com
+    username = exclowd
+[init]
+    defaultBranch = master
+[core]
+    editor = nvim
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
