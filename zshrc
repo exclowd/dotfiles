@@ -103,6 +103,7 @@ alias ls="exa"
 alias ll="exa -l"
 alias la="exa -la"
 alias l="exa -la"
+alias tmux='tmux -u'
 
 source ~/Library/gitstatus/gitstatus.prompt.zsh
 
