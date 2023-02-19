@@ -1,14 +1,25 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    source /etc/profile.d/vte.sh
+fi
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME=""
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,7 +81,7 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker fzf)
+plugins=(git docker fzf zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -82,11 +93,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -99,37 +106,59 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias ls="exa"
-alias ll="exa -l"
-alias la="exa -la"
-alias l="exa -la"
-alias tmux='tmux -u'
+alias vim='nvim'
 
 source ~/Library/gitstatus/gitstatus.prompt.zsh
 
-PROMPT='%70F%n@%m%f '                                  # green user@host
-PROMPT+='%39F%$((-GITSTATUS_PROMPT_LEN-1))<…<%~%<<%f'  # blue current working directory
-PROMPT+='${GITSTATUS_PROMPT:+ $GITSTATUS_PROMPT}'      # git status
-PROMPT+=$' '                                          # new line
-PROMPT+='%F{%(?.76.196)}%#%f '                         # %/# (normal/root); green/red (ok/error)
-
 # fnm
-export PATH=/home/exclowd/.fnm:$PATH
+export PATH=/home/kanmeh/.fnm:$PATH
 eval "`fnm env`"
+
+# golang
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$PATH:$(go env GOPATH)/bin"
+# >>> JVM installed by coursier >>>
+export JAVA_HOME="/home/kanmeh/.cache/coursier/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_linux_hotspot_8u292b10.tar.gz/jdk8u292-b10"
+export PATH="$PATH:/home/kanmeh/.cache/coursier/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_linux_hotspot_8u292b10.tar.gz/jdk8u292-b10/bin"
+# <<< JVM installed by coursier <<<
+
+# >>> coursier install directory >>>
+export PATH="$PATH:/home/kanmeh/.local/share/coursier/bin"
+# <<< coursier install directory <<<
+
+# racket(only for compilers)
+export PATH="$PATH:/home/kanmeh/Library/racket/bin"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/exclowd/Library/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/kanmeh/Library/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/exclowd/Library/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/exclowd/Library/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/kanmeh/Library/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/kanmeh/Library/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/exclowd/Library/miniconda3/bin:$PATH"
+        export PATH="/home/kanmeh/Library/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-eval "$(zoxide init zsh)"
+# zxoide init script
+eval "`zoxide init zsh`"
+
+# helper to set the time 
+_set_time() {
+    sudo systemctl stop chrony.service
+    sudo chronyd -q 'server ibm8.iiit.ac.in iburst'
+    sudo systemctl restart chrony.service
+}
+
+function copydir {
+  pwd | tr -d "\r\n" | pbcopy
+}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
