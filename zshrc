@@ -107,38 +107,43 @@ export EDITOR='vim'
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vim='nvim'
+alias ls="exa"
+alias ll="exa -l --icons --header"
+alias la="exa -la --icons --header"
+alias l="exa"
+alias tmux='tmux -u'
 
 source ~/Library/gitstatus/gitstatus.prompt.zsh
 
 # fnm
-export PATH=/home/kanmeh/.fnm:$PATH
+export PATH=/home/${USER}/.fnm:$PATH
 eval "`fnm env`"
 
 # golang
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$PATH:$(go env GOPATH)/bin"
 # >>> JVM installed by coursier >>>
-export JAVA_HOME="/home/kanmeh/.cache/coursier/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_linux_hotspot_8u292b10.tar.gz/jdk8u292-b10"
-export PATH="$PATH:/home/kanmeh/.cache/coursier/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_linux_hotspot_8u292b10.tar.gz/jdk8u292-b10/bin"
+export JAVA_HOME="/home/${USER}/.cache/coursier/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_linux_hotspot_8u292b10.tar.gz/jdk8u292-b10"
+export PATH="$PATH:/home/${USER}/.cache/coursier/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_linux_hotspot_8u292b10.tar.gz/jdk8u292-b10/bin"
 # <<< JVM installed by coursier <<<
 
 # >>> coursier install directory >>>
-export PATH="$PATH:/home/kanmeh/.local/share/coursier/bin"
+export PATH="$PATH:/home/${USER}/.local/share/coursier/bin"
 # <<< coursier install directory <<<
 
 # racket(only for compilers)
-export PATH="$PATH:/home/kanmeh/Library/racket/bin"
+export PATH="$PATH:/home/${USER}/Library/racket/bin"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/kanmeh/Library/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/${USER}/Library/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/kanmeh/Library/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/kanmeh/Library/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/${USER}/Library/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/${USER}/Library/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/kanmeh/Library/miniconda3/bin:$PATH"
+        export PATH="/home/${USER}/Library/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup

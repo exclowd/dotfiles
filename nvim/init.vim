@@ -6,10 +6,9 @@ call plug#begin()
     Plug 'preservim/nerdcommenter'
 
     Plug 'airblade/vim-gitgutter'
+    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
-    Plug 'morhetz/gruvbox'
-
-    Plug 'bling/vim-airline'
+    Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
     Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
@@ -58,7 +57,12 @@ set history=8192
 set signcolumn=yes:1
 
 "" colorscheme gruvbox
-colorscheme gruvbox
+colorscheme tokyonight-night
+
+"" vim airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='violet'
 
 "" Telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
