@@ -1,0 +1,5 @@
+i3-wm.gaps.inner.size: 10
+i3-wm.workspace.10.name: 0
+i3-wm.workspace.10.key: $mod+0
+!regolith.look.path: /usr/share/regolith-look/gruvbox
+regolith.look.path: /usr/share/regolith-look/solarized-dark

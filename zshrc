@@ -2,7 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # If you come from bash you might have to change your $PATH.
@@ -107,13 +107,12 @@ export EDITOR='vim'
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vim='nvim'
-alias ls="exa"
+alias ls="exa -l --icons --header"
 alias ll="exa -l --icons --header"
 alias la="exa -la --icons --header"
+alias tree='exa -T'
 alias l="exa"
 alias tmux='tmux -u'
-
-source ~/Library/gitstatus/gitstatus.prompt.zsh
 
 # fnm
 export PATH=/home/${USER}/.fnm:$PATH
@@ -166,4 +165,6 @@ function copydir {
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
+# Install ruby gens to ~/Library/gems
+export GEM_HOME="$HOME/Library/gems"
+export PATH="$HOME/Library/gems/bin:$PATH"
