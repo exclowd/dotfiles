@@ -2,7 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # If you come from bash you might have to change your $PATH.
@@ -10,10 +10,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-    source /etc/profile.d/vte.sh
-fi
+export DEV=$HOME
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -81,7 +78,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker fzf zsh-autosuggestions)
+plugins=(git fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,10 +90,17 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='vim'
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -104,67 +108,44 @@ export EDITOR='vim'
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-alias vim='nvim'
+alias vim="nvim"
+alias tmux="tmux -u"
 alias ls="exa -l --icons --header"
 alias ll="exa -l --icons --header"
 alias la="exa -la --icons --header"
 alias tree='exa -T'
 alias l="exa"
-alias tmux='tmux -u'
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# fnm
-export PATH=/home/${USER}/.fnm:$PATH
-eval "`fnm env`"
-
-# golang
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$PATH:$(go env GOPATH)/bin"
-# >>> JVM installed by coursier >>>
-export JAVA_HOME="/home/${USER}/.cache/coursier/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_linux_hotspot_8u292b10.tar.gz/jdk8u292-b10"
-export PATH="$PATH:/home/${USER}/.cache/coursier/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_linux_hotspot_8u292b10.tar.gz/jdk8u292-b10/bin"
-# <<< JVM installed by coursier <<<
-
-# >>> coursier install directory >>>
-export PATH="$PATH:/home/${USER}/.local/share/coursier/bin"
-# <<< coursier install directory <<<
-
-# racket(only for compilers)
-export PATH="$PATH:/home/${USER}/Library/racket/bin"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/${USER}/Library/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/kkm/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/${USER}/Library/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/${USER}/Library/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/${DEV}/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/${DEV}/opt/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/${USER}/Library/miniconda3/bin:$PATH"
+        export PATH="/home/kkm/opt/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
+
+export PATH="/home/kkm/.local/bin:$PATH"
 # <<< conda initialize <<<
 
-# zxoide init script
-eval "`zoxide init zsh`"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
-# helper to set the time 
-_set_time() {
-    sudo systemctl stop chrony.service
-    sudo chronyd -q 'server ibm8.iiit.ac.in iburst'
-    sudo systemctl restart chrony.service
-}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-function copydir {
-  pwd | tr -d "\r\n" | pbcopy
-}
+eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Install ruby gens to ~/Library/gems
-export GEM_HOME="$HOME/Library/gems"
-export PATH="$HOME/Library/gems/bin:$PATH"
+

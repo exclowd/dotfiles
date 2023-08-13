@@ -1,18 +1,11 @@
 {
 	"workbench.iconTheme": "vscode-icons",
 	"files.autoSave": "afterDelay",
-	"files.exclude": {
-		"**/__pycache__": true,
-		"**/*.pyc": true,
-		".git": true,
-		"**/*.meta": true
-	},
 	"files.trimTrailingWhitespace": true,
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/.git": true
 	},
-	"editor.fontLigatures": true,
 	"editor.detectIndentation": true,
 	"editor.rulers": [
 		80,
@@ -22,34 +15,34 @@
 	"editor.insertSpaces": false,
 	"editor.bracketPairColorization.enabled": true,
 	"editor.suggestSelection": "first",
-
 	"window.menuBarVisibility": "toggle",
-
 	"cmake.configureOnOpen": true,
 	"C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}",
-
 	"diffEditor.ignoreTrimWhitespace": false,
-	"extensions.ignoreRecommendations": true,
-
 	"go.toolsManagement.autoUpdate": true,
-
 	"terminal.integrated.enableMultiLinePasteWarning": false,
 	"notebook.output.textLineLimit": 100,
 	"vim.easymotion": true,
 	"vim.incsearch": true,
 	"vim.useCtrlKeys": true,
 	"vim.hlsearch": true,
-	"vim.useSystemClipboard": true,
 	"vim.leader": "\\",
 	"vim.handleKeys": {
 		"<C-a>": false,
 		"<C-k>": false,
 		"<C-z>": false,
 		"<C-y>": false,
-		"<C-i>": false
+		"<C-h>": false,
+		"<C-space>": false
 	},
+	"vim.normalModeKeyBindings": [
+		{
+			"before": [ "g", "i" ],
+			"commands": [ "editor.action.goToImplementation" ]
+		}
+	],
 	"[javascript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[html]": {
 		"editor.defaultFormatter": "vscode.html-language-features"
@@ -58,11 +51,26 @@
 		"editor.defaultFormatter": "vscode.json-language-features"
 	},
 	"javascript.updateImportsOnFileMove.enabled": "always",
-	"jupyter.askForKernelRestart": false,
 	"editor.inlineSuggest.enabled": true,
 	"[python]": {
-		"editor.formatOnType": true
+		"editor.formatOnType": true,
+		"editor.defaultFormatter": "ms-python.python"
 	},
 	"explorer.confirmDragAndDrop": false,
 	"terminal.integrated.inheritEnv": false,
+	"window.zoomLevel": 0,
+	"workbench.startupEditor": "none",
+	"editor.fontFamily": "'FiraCode Nerd Font Mono', 'monospace', monospace",
+	"editor.fontLigatures": false,
+	"rust-analyzer.cargo.buildScripts.enable": true,
+	"editor.renderWhitespace": "all",
+	"C_Cpp.intelliSenseEngine": "disabled",
+	"python.formatting.provider": "autopep8",
+	"python.formatting.autopep8Args": [
+		"--max-line-length=119",
+		"--aggressive",
+		"--aggressive"
+	],
+	"editor.minimap.enabled": false,
+	"editor.fontSize": 16
 }

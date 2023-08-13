@@ -1,0 +1,17 @@
+charliermarsh.ruff
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+golang.go
+llvm-vs-code-extensions.vscode-clangd
+ms-azuretools.vscode-docker
+ms-python.python
+ms-python.vscode-pylance
+ms-vscode-remote.remote-ssh
+ms-vscode-remote.remote-ssh-edit
+ms-vscode.cmake-tools
+ms-vscode.cpptools
+ms-vscode.remote-explorer
+rust-lang.rust-analyzer
+twxs.cmake
+vscode-icons-team.vscode-icons
+vscodevim.vim
