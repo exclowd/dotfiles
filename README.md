@@ -44,4 +44,6 @@ You know what these are, copying is encouraged. I will add more and more configs
 1. tmux
 1. compiler toolchain
 1. cargo
+2. tmux switcher ts
+3. hub
 
