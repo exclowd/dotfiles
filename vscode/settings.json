@@ -1,110 +1,165 @@
 {
-  "workbench.iconTheme": "vscode-icons",
-  "files.autoSave": "afterDelay",
-  "files.trimTrailingWhitespace": true,
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/.git": true
-  },
-  "editor.fontSize": 14,
-  "editor.detectIndentation": true,
-  "editor.rulers": [80, 100, 120],
-  "editor.insertSpaces": false,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.suggestSelection": "first",
-  "window.menuBarVisibility": "toggle",
-  "cmake.configureOnOpen": true,
-  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 120, BreakBeforeBraces: Allman, AllowShortFunctionsOnASingleLine: Inline, AllowShortIfStatementsOnASingleLine: false, AllowShortLoopsOnASingleLine: false, IndentCaseLabels: false}",
-  "diffEditor.ignoreTrimWhitespace": false,
-  "go.toolsManagement.autoUpdate": true,
-  "terminal.integrated.enableMultiLinePasteWarning": false,
-  "notebook.output.textLineLimit": 100,
-  "vim.easymotion": true,
-  "vim.incsearch": true,
-  "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
-  "vim.smartRelativeLine": true,
-  "vim.leader": "<space>",
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-k>": false,
-    "<C-z>": false,
-    "<C-y>": false,
-    "<C-h>": false,
-    "<C-p>": false,
-    "<C-c>": false,
-    "<C-space>": false
-  },
-  "vim.normalModeKeyBindings": [
-  {
-      "before": ["<leader>", "e"],
-      "commands": ["workbench.view.explorer"]
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.detectIndentation": true,
+    "editor.fontLigatures": false,
+    "editor.inlayHints.enabled": "off",
+    "editor.inlineSuggest.enabled": true,
+    "editor.insertSpaces": false,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [
+        80,
+        100,
+        120
+    ],
+    "editor.suggestSelection": "first",
+    "explorer.confirmDragAndDrop": false,
+    "files.autoSave": "afterDelay",
+    "files.trimTrailingWhitespace": true,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/.git": true
     },
-    {
-      "before": ["<leader>", "d"],
-      "commands": ["editor.action.revealDefinition"]
+    "terminal.integrated.enableMultiLinePasteWarning": "auto",
+    "terminal.integrated.inheritEnv": false,
+    "vim.easymotion": true,
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-k>": false,
+        "<C-z>": false,
+        "<C-y>": false,
+        "<C-h>": false,
+        "<C-p>": false,
+        "<C-c>": false,
+        "<C-space>": false
     },
-    {
-      "before": ["<leader>", "D"],
-      "commands": ["editor.action.revealDefinitionAside"]
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "workbench.view.explorer"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "commands": [
+                "editor.action.revealDefinition"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "D"
+            ],
+            "commands": [
+                "editor.action.revealDefinitionAside"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "editor.action.showDefinitionPreviewHover"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "i"
+            ],
+            "commands": [
+                "editor.action.goToImplementation"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "p",
+                "i"
+            ],
+            "commands": [
+                "editor.action.peekImplementation"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "."
+            ],
+            "commands": [
+                "editor.action.quickFix"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r"
+            ],
+            "commands": [
+                "editor.action.referenceSearch.trigger"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "t"
+            ],
+            "commands": [
+                "editor.action.goToTypeDefinition"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "p",
+                "t"
+            ],
+            "commands": [
+                "editor.action.peekTypeDefinition"
+            ]
+        }
+    ],
+    "vim.smartRelativeLine": true,
+    "vim.useCtrlKeys": true,
+    "window.menuBarVisibility": "toggle", // for linux
+    "window.zoomLevel": 0,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.startupEditor": "none",
+    // c_cpp
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 120, BreakBeforeBraces: Allman, AllowShortFunctionsOnASingleLine: Inline, AllowShortIfStatementsOnASingleLine: false, AllowShortLoopsOnASingleLine: false, IndentCaseLabels: false}",
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "cmake.configureOnOpen": true,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    // python
+    "[python]": {
+        "editor.formatOnType": true
     },
-    {
-      "before": ["K"],
-      "commands": ["editor.action.showDefinitionPreviewHover"]
-    },
-    {
-      "before": ["<leader>", "i"],
-      "commands": ["editor.action.goToImplementation"]
-    },
-    {
-      "before": ["<leader>", "p", "i"],
-      "commands": ["editor.action.peekImplementation"]
-    },
-    {
-      "before": ["<leader>", "."],
-      "commands": ["editor.action.quickFix"]
-    },
-    {
-      "before": ["<leader>", "r"],
-      "commands": ["editor.action.referenceSearch.trigger"]
-    },
-    {
-      "before": ["<leader>", "t"],
-      "commands": ["editor.action.goToTypeDefinition"]
-    },
-    {
-      "before": ["<leader>", "p", "t"],
-      "commands": ["editor.action.peekTypeDefinition"]
-    }
-  ],
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "editor.inlineSuggest.enabled": true,
-  "[python]": {
-    "editor.formatOnType": true
-  },
-  "explorer.confirmDragAndDrop": false,
-  "terminal.integrated.inheritEnv": false,
-  "workbench.startupEditor": "none",
-  "editor.fontFamily": "'Fira Mono', 'monospace', monospace",
-  "editor.fontLigatures": false,
-  "rust-analyzer.cargo.buildScripts.enable": true,
-  "editor.renderWhitespace": "all",
-  "C_Cpp.intelliSenseEngine": "disabled",
-  "python.formatting.provider": "autopep8",
-  "python.formatting.autopep8Args": [
-    "--max-line-length=119",
-    "--aggressive",
-    "--aggressive"
-  ],
-  "editor.minimap.enabled": false,
-  "window.zoomLevel": 0,
-"C_Cpp.default.cppStandard": "c++17",
-"[jsonc]": {
-	"editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"cmake.pinnedCommands": [
-  "workbench.action.tasks.configureTaskRunner",
-  "workbench.action.tasks.runTask"
-],
-"editor.inlayHints.enabled": "off"
+    "python.formatting.autopep8Args": [
+        "--max-line-length=119",
+        "--aggressive",
+        "--aggressive"
+    ],
+    "python.formatting.provider": "autopep8",
+    "notebook.output.textLineLimit": 100,
+    // golang
+    "go.toolsManagement.autoUpdate": true,
+    // javascript
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    // rust
+    "rust-analyzer.cargo.buildScripts.enable": true,
 }
